@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Navbar, NavbarBrand} from 'reactstrap';
-import Menu from './components/MenuComponent';
-
+import 'font-awesome/css/font-awesome.css';
+import 'bootstrap-social/bootstrap-social.css';import Main from './components/MainComponent';
+import './App.css'
+import {BrowserRouter} from 'react-router-dom'
 class  App extends Component {
 
+
+ 
+  
   render(){
   return (
+    <BrowserRouter>
     <div >
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">
-            Ristorante core fussion
-
-          </NavbarBrand>
-
-        </div>
-      </Navbar>
-      <Menu></Menu>
+      <Main />
     </div>
+    </BrowserRouter>
   );
 }
 }
