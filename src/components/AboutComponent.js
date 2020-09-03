@@ -1,12 +1,48 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../share/baseUrl';
+import { FadeTransform } from 'react-animation-components';
+import { Loading } from './LoadingComponent';
 
-const RenderLeader=({leader})=>{
+const RenderLeader=({leader ,isLoading,errMess})=>{
+    if (isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (errMess) {
+        return(
+            <div className="container">
+                <div className="row"> 
+                    <div className="col-12">
+                        <h4>{errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    
+        else
+
+
+
     return (
+
+
+        
+        <FadeTransform
+        in
+        transformProps={{
+            exitTransform: 'scale(0.5) translateY(-50%)'
+        }}>
         <Media tag="li">
         <Media left middle>
-            <Media object src={leader.image}/>
+            <Media object src={baseUrl+ leader.image}/>
             
         </Media>
 
@@ -18,6 +54,7 @@ const RenderLeader=({leader})=>{
         </Media>
 
     </Media>
+    </FadeTransform>
     );
 
 
@@ -31,7 +68,8 @@ function About(props) {
     const leaders = props.leaders.map((leader) => {
        
        return(
-        <RenderLeader leader={leader}></RenderLeader>
+        <RenderLeader leader={leader} isLoading={props.isLoading}
+        errMess={props.errMess} ></RenderLeader>
        )
            });
 
